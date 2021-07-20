@@ -34,7 +34,7 @@ CHECK_WAVE="false"
 CLEAN="false"
 PARAMETERS=
 CFLAGS=
-GBD="false"
+GDB="false"
 
 # Check parameters
 while getopts 'he:bt:sa:f:gw:c' OPT; do
@@ -46,7 +46,7 @@ while getopts 'he:bt:sa:f:gw:c' OPT; do
         s) SIMULATE="true";;
         a) PARAMETERS="$OPTARG";;
         f) CFLAGS="$OPTARG";;
-        g) GBD="true";;
+        g) GDB="true";;
         w) CHECK_WAVE="true"; WAVE_FILE="$OPTARG";;
         c) CLEAN="true";;
         ?) help;;
@@ -101,7 +101,7 @@ fi
 if [[ "$SIMULATE" == "true" ]]; then
     echo "Simulating..."
     cd $BUILD_PATH
-    if [[ "$GBD" == "true" ]]; then
+    if [[ "$GDB" == "true" ]]; then
         gdb -s $EMU_FILE --args ./$EMU_FILE $PARAMETERS
     else
         ./$EMU_FILE $PARAMETERS
